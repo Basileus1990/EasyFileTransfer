@@ -3,52 +3,72 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"strings"
+
+	"github.com/Basileus1990/EasyFileTransfer.git/server"
+	"github.com/Basileus1990/EasyFileTransfer.git/sharing"
+)
+
+// features
+const (
+	SHAREFILES = "sharef"
+	GETFILES   = "getf"
+	SERVERMODE = "server"
+	EXIT       = "quit"
 )
 
 // handles menu
 func main() {
-	userChoice := ""
-	argument := ""
-	for userChoice != "quit" && userChoice != "q" {
-		fmt.Println("\"getf {PATH}\" to get the files")
-		fmt.Println("\"quit\" or \"q\"")
-
-		// user input
-		reader := bufio.NewReader(os.Stdin)
-		line, err := reader.ReadString('\n')
+	var userChoice string
+	var args []string
+	var err error
+	for userChoice != EXIT {
+		userChoice, args, err = getUserInput()
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println("Something went wrong: ", err, " Please try again")
 		}
-		// removes the new line byte
-		line = line[:len(line)-1]
-
-		if strings.Contains(line, " ") {
-			input := strings.Split(line, " ")
-			userChoice = input[0]
-			argument = strings.Join(input[1:], " ")
-		} else {
-			userChoice = line
-			argument = ""
-		}
-
-		switch userChoice {
-		case "getf":
-			files, err := os.ReadDir(argument)
-			if err != nil {
-				fmt.Println(err)
-				fmt.Print("\n\n\n")
-				continue
-			}
-			for _, f := range files {
-				fmt.Println(f.Name())
-			}
-			_, e := reader.ReadString('\n')
-			if e == nil {
-				log.Println("")
-			}
+		err = delegateByChoice(userChoice, args)
+		if err != nil {
+			fmt.Println("Something went wrong: ", err, " Please try again")
 		}
 	}
+}
+
+func delegateByChoice(userChoice string, args []string) error {
+	switch userChoice {
+	case SHAREFILES:
+		err := sharing.Share(args)
+		if err != nil {
+			return err
+		}
+
+	case SERVERMODE:
+		server.StartServer()
+
+	}
+
+	return nil
+}
+
+func getUserInput() (string, []string, error) {
+	fmt.Println("\nOptions:")
+	fmt.Println("--> " + SHAREFILES)
+	fmt.Println("--> " + GETFILES)
+	fmt.Println("--> " + SERVERMODE)
+	fmt.Println("--> " + EXIT)
+	fmt.Print("Choose an option: ")
+
+	// user input
+	reader := bufio.NewReader(os.Stdin)
+	line, err := reader.ReadString('\n')
+	if err != nil {
+		return "", nil, err
+	}
+
+	// removes the new line byte
+	line = line[:len(line)-1]
+	input := strings.Split(line, " ")
+
+	return input[0], input[1:], nil
 }
