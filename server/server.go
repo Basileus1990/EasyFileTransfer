@@ -2,19 +2,24 @@ package server
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 )
 
 func StartServer() {
-	http.HandleFunc("/share", shareFiles)
+	mux := setRouting()
+
 	fmt.Println("<---- Starting the server ---->")
-	http.ListenAndServe(":8080", nil)
+	server := http.Server{
+		Addr:    ":8080",
+		Handler: mux,
+	}
+	server.ListenAndServe()
 }
 
 func shareFiles(w http.ResponseWriter, r *http.Request) {
 	log.Println("got to shareFiles")
-	body, _ := ioutil.ReadAll(r.Body)
+	body, _ := io.ReadAll(r.Body)
 	log.Println(string(body))
 }
