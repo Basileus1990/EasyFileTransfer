@@ -7,12 +7,12 @@ import "encoding/json"
 type file struct {
 	Name string `json:"name"`
 	Type string `json:"type"`
-	Size int    `json: "type"`
+	Size int    `json:"size"`
 }
 
 type Directory struct {
 	Name    string      `json:"name"`
-	SubDirs []Directory `json:"subdirs`
+	SubDirs []Directory `json:"subdirs"`
 	Files   []file      `json:"files"`
 }
 
