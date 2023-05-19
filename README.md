@@ -50,11 +50,12 @@ $An API written in GO for sharing files
 
 ### TODO:
 1. Creating the server
+    * [X] Make the server take the sent json, parse it and put (temporalily) in map in memory
     * [ ] Make the model for transforming sent json with directory and file data and verify it and convert it to a GO struct
     * [ ] 
     * [ ] 
     * [ ] 
-    * [ ] 
+    * [ ] Save logs to a file
 
 
 

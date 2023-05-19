@@ -1,7 +1,12 @@
 package server
 
-import "net/http"
+import (
+	"net/http"
 
+	"github.com/Basileus1990/EasyFileTransfer.git/server/receiver"
+)
+
+// API options
 const (
 	SHARE = "/share"
 )
@@ -10,7 +15,7 @@ const (
 func setRouting() *http.ServeMux {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc(SHARE, shareFiles)
+	mux.HandleFunc(SHARE, receiver.ShareFiles)
 
 	return mux
 }

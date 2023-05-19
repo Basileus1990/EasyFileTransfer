@@ -23,7 +23,7 @@ func main() {
 	var userChoice string
 	var args []string
 	var err error
-	for userChoice != EXIT {
+	for strings.ToLower(userChoice) != EXIT {
 		userChoice, args, err = getUserInput()
 		if err != nil {
 			fmt.Println("Something went wrong: ", err, " Please try again")
@@ -38,7 +38,7 @@ func main() {
 func delegateByChoice(userChoice string, args []string) error {
 	switch userChoice {
 	case SHAREFILES:
-		err := sharing.Share(args)
+		err := sharing.Share(args[0])
 		if err != nil {
 			return err
 		}
