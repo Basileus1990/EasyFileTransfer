@@ -1,6 +1,6 @@
 package database
 
-import "github.com/Basileus1990/EasyFileTransfer.git/server/dataStructs"
+import "github.com/Basileus1990/EasyFileTransfer.git/APIserver/dataStructs"
 
 // temporary
 var db map[string]dataStructs.Directory

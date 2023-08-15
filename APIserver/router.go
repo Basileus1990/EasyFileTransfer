@@ -1,9 +1,9 @@
-package server
+package main
 
 import (
 	"net/http"
 
-	"github.com/Basileus1990/EasyFileTransfer.git/server/receiver"
+	"github.com/Basileus1990/EasyFileTransfer.git/APIserver/receiver"
 )
 
 // API options

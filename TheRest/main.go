@@ -6,8 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Basileus1990/EasyFileTransfer.git/server"
-	"github.com/Basileus1990/EasyFileTransfer.git/sharing"
+	"github.com/Basileus1990/EasyFileTransfer.git/TheRest/sharing"
 )
 
 // features
@@ -44,7 +43,7 @@ func delegateByChoice(userChoice string, args []string) error {
 		}
 
 	case SERVERMODE:
-		server.StartServer()
+		//APIserver.StartServer()
 
 	}
 

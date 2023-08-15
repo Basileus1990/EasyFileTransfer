@@ -10,15 +10,13 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Basileus1990/EasyFileTransfer.git/server/dataStructs"
-	"github.com/Basileus1990/EasyFileTransfer.git/server/database"
+	"github.com/Basileus1990/EasyFileTransfer.git/APIserver/dataStructs"
+	"github.com/Basileus1990/EasyFileTransfer.git/APIserver/database"
 )
 
 const (
 	keyLength = 64
 )
-
-var TMP_DB map[string]dataStructs.Directory = make(map[string]dataStructs.Directory)
 
 // Takes the JSON file, gets it converted and adds to TODO: database using randomly generated key
 func ShareFiles(w http.ResponseWriter, r *http.Request) {
@@ -33,7 +31,7 @@ func ShareFiles(w http.ResponseWriter, r *http.Request) {
 	key, err := generateUniqueKey()
 	if err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusBadRequest)
+		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 

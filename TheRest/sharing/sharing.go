@@ -10,7 +10,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Basileus1990/EasyFileTransfer.git/server/dataStructs"
+	"github.com/Basileus1990/EasyFileTransfer.git/APIserver/dataStructs"
 )
 
 const serverURL = "http://localhost:8080/share"
@@ -87,10 +87,10 @@ func sendDirContent(data []byte) (*http.Response, error) {
 
 	client := &http.Client{}
 	response, err := client.Do(request)
-	defer response.Body.Close()
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	log.Println("Status: ", response.Status)
 	body, _ := ioutil.ReadAll(response.Body)

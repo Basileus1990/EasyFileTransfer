@@ -49,13 +49,32 @@ $An API written in GO for sharing files
 % To be added
 
 ### TODO:
-1. Creating the server
-    * [X] Make the server take the sent json, parse it and put (temporalily) in map in memory
-    * [ ] Make the model for transforming sent json with directory and file data and verify it and convert it to a GO struct
-    * [ ] 
+1. Creating the file transfer API server
+    * [X] Make the server take the sent json, parse it and put (temporalily) in a map in memory
+    * [X] Create unique keys for sent data
+    * [ ] Create an option to get data from temporary db using the unique key
+    * [ ] Add the database
     * [ ] 
     * [ ] 
     * [ ] Save logs to a file
+
+2. Creating the website server
+    * [ ] create basic server with basic HTML template
+    * [ ] add possibility to upload file data
+    * [ ] add possibility to get file data
+
+3. Database
+    * [ ] choose the database
+    * [ ] Implement storing the directories
+    * [ ] 
+
+4. Overall structure
+    * [ ] split the application into separate parts
+        * [X] independent API server
+        * [ ] independent website server
+        * [ ] independent database server
+
+5. CLI tool - mostly for testing but who knows, maybe it will be 
 
 
 

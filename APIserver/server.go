@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"fmt"
@@ -14,4 +14,8 @@ func StartServer() {
 		Handler: mux,
 	}
 	server.ListenAndServe()
+}
+
+func main() {
+	StartServer()
 }

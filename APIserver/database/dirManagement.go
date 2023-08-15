@@ -2,7 +2,7 @@
 
 package database
 
-import "github.com/Basileus1990/EasyFileTransfer.git/server/dataStructs"
+import "github.com/Basileus1990/EasyFileTransfer.git/APIserver/dataStructs"
 
 func AddDir(mainDir *dataStructs.Directory, key string) {
 	db[key] = *mainDir
